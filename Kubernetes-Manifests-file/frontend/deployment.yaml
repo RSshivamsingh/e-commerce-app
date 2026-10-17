@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: YOUR_DOCKERHUB_USERNAME/frontend-service:v1
+        image: rsshivam2003/frontend-service:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 80
