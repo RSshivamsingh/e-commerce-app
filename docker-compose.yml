@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: always
+
+  auth-service:
+    image: ${DOCKERHUB_USER}/auth-service:v1
+    container_name: auth-container
+    ports:
+      - "5001:5001"
+    environment:
+      - MONGO_CONN_STR=mongodb://mongodb:27017/auth_db?directConnection=true
+    depends_on:
+      - mongodb
+    restart: always
+
+  feed-service:
+    image: ${DOCKERHUB_USER}/feed-service:v1
+    container_name: feed-container
+    ports:
+      - "5002:5002"
+    environment:
+      - MONGO_CONN_STR=mongodb://mongodb:27017/feed_db?directConnection=true
+    depends_on:
+      - mongodb
+    restart: always
+
+  cart-service:
+    image: ${DOCKERHUB_USER}/cart-service:v1
+    container_name: cart-container
+    ports:
+      - "5003:5003"
+    environment:
+      - MONGO_CONN_STR=mongodb://mongodb:27017/cart_db?directConnection=true
+    depends_on:
+      - mongodb
+    restart: always
+
+  frontend:
+    image: ${DOCKERHUB_USER}/frontend-service:v1
+    container_name: frontend-container
+    ports:
+      - "8000:80"
+    depends_on:
+      - auth-service
+      - feed-service
+      - cart-service
+    restart: always
+
+volumes:
+  mongo-data:
