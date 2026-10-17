@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: auth-service
-        image: YOUR_DOCKERHUB_USERNAME/auth-service:v1
+        image: rsshivam2003/auth-service:v1
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
@@ -78,7 +78,7 @@ spec:
     spec:
       containers:
       - name: feed-service
-        image: YOUR_DOCKERHUB_USERNAME/feed-service:v1
+        image: rsshivam2003/feed-service:v1
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
@@ -134,7 +134,7 @@ spec:
     spec:
       containers:
       - name: cart-service
-        image: YOUR_DOCKERHUB_USERNAME/cart-service:v1
+        image: rsshivam2003/cart-service:v1
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
