@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ingress.yaml
-  - backend/auth-deployment.yaml
-  - backend/feed-deployment.yaml
-  - backend/cart-deployment.yaml
-  - database/mongodb-deployment.yaml
-  - frontend/frontend-deployment.yaml
+  - backend/auth-service.yaml
+  - backend/feed-service.yaml
+  - backend/cart-service.yaml
+  - database/mongodb.yaml
+  - frontend/frontend.yaml
